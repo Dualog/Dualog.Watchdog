@@ -38,8 +38,8 @@ foreach($serviceName in $services)
 {
     WriteLog "Checking service '$serviceName'"
     
+    # -ea flag = ErrorAction. Silent error, variable set to null.
     $arrService = Get-Service -Name $serviceName -ea 0
-
     if(!$arrService) {
 
         WriteLog "Could not find service '$serviceName'"
