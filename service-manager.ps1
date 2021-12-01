@@ -12,7 +12,7 @@
 	https://github.com/dualog
 #>
 
-$debug = 1
+$debug = 0
 $dateNow = (Get-Date).ToUniversalTime()
 $logStamp = $dateNow.toString("dd_MM_yyyy")
 $logFileName = "C:\Dualog\Logs\DualogServiceManager_$logStamp.log"
@@ -22,6 +22,8 @@ function WriteLog
     Param ([string]$LogString, [string]$Level="Information")
     $Stamp = $dateNow.toString("yyyy-MM-dd HH:mm:ss")
     $LogMessage = "$Stamp [$Level] $LogString"
+
+    # Write to Console if debug = 1
     if($debug) {
         Write-Host $LogMessage
     }
@@ -31,7 +33,7 @@ function WriteLog
 
 WriteLog "Starting Dualog task manager"
 
-[Array] $services = 'TestClient2';
+[Array] $services = 'DualogAccessClient';
 
 # loop through each service, if its not running, start it
 foreach($serviceName in $services)
@@ -52,8 +54,15 @@ foreach($serviceName in $services)
         continue
     }
 
+    [int] $retryCount = "0"
+
     while ($arrService.Status -ne 'Running')
     {
+
+        if ($retryCount -gt 3) {
+            break
+        }
+
         $status = $arrService.status
         WriteLog "Status for service '$serviceName': $status"
 
@@ -68,5 +77,7 @@ foreach($serviceName in $services)
         {
           WriteLog 'Service is now Running'
         }
+
+        $retryCount = $retryCount + 1
     }
 }
