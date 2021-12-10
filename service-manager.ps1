@@ -50,7 +50,7 @@ Function Get-UpTime {
 Log "Starting Dualog task manager"
 Log "Computer uptime: $((Get-UpTime).TotalMinutes) minutes"
 
-[Array] $services = 'DualogAccessClient';
+[Array] $services = 'TestClient2';
 
 # loop through each service, if its not running, start it
 foreach($serviceName in $services)
@@ -91,7 +91,7 @@ foreach($serviceName in $services)
 
         if ($arrService.Status -eq 'Running')
         {
-          Log 'Service is now Running'
+          Log "Service '$serviceName' is now Running"
         }
 
         $retryCount = $retryCount + 1
