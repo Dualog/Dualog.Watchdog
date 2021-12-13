@@ -1,4 +1,4 @@
-# Dualog Service Manager
+# Dualog Watchdog
 
 Powershell script for monitoring Dualog services. 
 
