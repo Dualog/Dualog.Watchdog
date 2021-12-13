@@ -18,3 +18,6 @@ The script has to be trusted and a scheduled task has to be set up on the comput
 
 ### **Setting up Windows Task Scheduler**
 
+Copy the `Dualog Watchdog.xml` file to the host computer then import it via Schedule Tasks in Windows:
+
+![Screenshot](https://user-images.githubusercontent.com/17533404/145787089-9511a58c-d5b3-400b-8bc9-4f72eb08b17e.png)
