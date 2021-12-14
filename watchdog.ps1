@@ -12,7 +12,7 @@
 	https://github.com/dualog
 #>
 
-$debug = 1
+$debug = 0
 $dateNow = (Get-Date).ToUniversalTime()
 $logStamp = $dateNow.toString("dd_MM_yyyy")
 $contentRoot = Split-Path $MyInvocation.MyCommand.Path -Parent 
@@ -50,8 +50,7 @@ Function Get-UpTime {
 Log "Starting Dualog task manager"
 Log "Computer uptime: $((Get-UpTime).TotalMinutes) minutes"
 
-
-[Array] $services = 'TestClient2';
+[Array] $services = 'DualogAccessClient';
 
 # loop through each service, if its not running, start it
 foreach($serviceName in $services)
@@ -61,7 +60,6 @@ foreach($serviceName in $services)
     # -ea flag = ErrorAction. Silent error, variable set to null.
     $arrService = Get-Service -Name $serviceName -ea 0
     if(!$arrService) {
-
         Log "Could not find service '$serviceName'" "Error"
         continue
     }
