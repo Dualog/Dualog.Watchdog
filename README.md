@@ -16,6 +16,9 @@ See https://github.com/Dualog/Dualog.Watchdog/issues/1 for common errors.
 To install this script you need an administrator account on the computer you are deploying it to.
 The script has to be trusted and a scheduled task has to be set up on the computer to run this script.
 
+
+Script must be located under `C:\Dualog\Watchdog\watchdog.ps1`
+
 ### **Setting up Windows Task Scheduler**
 
 Copy the `watchdog.xml` file to the host computer then import it via Schedule Tasks in Windows:
